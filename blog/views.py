@@ -11,6 +11,9 @@ def index(request):
 def detail(request, post_id):
     try:
         post = Post.objects.get(pk=post_id)
+        post.view_count += 1
+        post.save()
+
     except Post.DoesNotExist:
         raise Http404("Post with given ID does not exist")
     
